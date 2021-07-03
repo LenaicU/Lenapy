@@ -1,0 +1,23 @@
+async def test(ctx):
+    def checkReact(reaction,user):
+        return user == ctx.message.author and msg.id == reaction.message.id and user.id != botID
+    
+    msg = await ctx.send("__Confirmation requise !__")
+    await msg.add_reaction(emoji.check)
+    await msg.add_reaction(emoji.cross)
+
+    try:
+        react = await bot.wait_for('reaction_add',timeout = 10.0,check=checkReact)
+        if str(react[0]) == emoji.check:
+            print(True)
+        elif str(react[0]) == emoji.cross:
+            print(False)
+    except:
+         print(False)
+    
+    await msg.delete()
+
+def checkMsg(message):
+        return message.author == ctx.message.author and ctx.message.channel == message.channel
+def checkReact(reaction,user):
+    return user == ctx.message.author and msg.id == reaction.message.id and user.id != botID
